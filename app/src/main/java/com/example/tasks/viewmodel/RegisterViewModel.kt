@@ -8,6 +8,7 @@ import com.example.tasks.service.model.HeaderModel
 import com.example.tasks.service.constants.TaskConstants
 import com.example.tasks.service.listener.APIListener
 import com.example.tasks.service.listener.ValidationListener
+import com.example.tasks.service.model.TaskModel
 import com.example.tasks.service.repository.PersonRepository
 import com.example.tasks.service.repository.local.SecurityPreferences
 
@@ -21,7 +22,7 @@ class RegisterViewModel(application: Application) : AndroidViewModel(application
 
 
     fun create(name: String, email: String, password: String) {
-        mPersonRepository.create(name, email, password, object : APIListener {
+        mPersonRepository.create(name, email, password, object : APIListener<HeaderModel>{
             override fun onSuccess(model: HeaderModel) {
                 mSharedPreferences.store(TaskConstants.SHARED.TOKEN_KEY, model.token)
                 mSharedPreferences.store(TaskConstants.SHARED.PERSON_KEY, model.personKey)

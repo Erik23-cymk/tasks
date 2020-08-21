@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.tasks.R
+import com.example.tasks.service.repository.remote.RetrofitClient
 import com.example.tasks.viewmodel.LoginViewModel
 import kotlinx.android.synthetic.main.activity_login.*
 
@@ -59,6 +60,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         mViewModel.login.observe(this, Observer {
             if (it.success()) {
                 startActivity(Intent(this, MainActivity::class.java))
+
             } else {
                 val message = it.failure()
                 Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
